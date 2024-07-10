@@ -22,6 +22,13 @@ jobs:
         username: crisdockerz
           # Password or personal access token used to log against the Docker registry
         password: ${{ secrets.PASSWORD_DOCKER_HUB }}
+
+    - name: Download a Build Artifact
+      uses: actions/download-artifact@v4.1.8
+      with:
+        # Name of the artifact to download. If unspecified, all artifacts for the run are downloaded.
+        name: programa-em-go          
+        
     - name: Build and push Docker images
   # You may pin to the exact commit or the version.
   # uses: docker/build-push-action@1a162644f9a7e87d8f4b053101d1d9a712edc18c
@@ -35,4 +42,6 @@ jobs:
         push: true
         # List of tags
         tags: cris/go_ci:${{github.ref_name}}
+
+        
           
